@@ -1,9 +1,7 @@
 TicTacToeModel = function(playerOne,playerTwo) {
   this._players = [playerOne, playerTwo]
-  this._grid = [["","",""],
-                ["","",""],
-                ["","",""]]
-  this.WINNING_COMBOS = 0
+  this._grid = []
+  this.WINNING_COMBOS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,9],[0,4,8],[2,4,6]]
 }
 
 TicTacToeModel.prototype.swapPlayer = function() {
@@ -14,6 +12,36 @@ TicTacToeModel.prototype.currentPlayer = function() {
   return this._players[0];
 };
 
-TicTacToeModel.prototype.newTurn = function(location, callback) {
+TicTacToeModel.prototype.newTurn = function(gridLocation, callback) {
+  this._grid.push(gridLocation);
+  callback(); // call with checkBoard as callback
+};
 
+TicTacToeModel.prototype.checkBoard = function() {
+  if(this.isWin()) return this.declareWinner();
+  if(this.isDraw()) return this.declareDraw();
+};
+
+TicTacToeModel.prototype.isWin = function () {
+  return "win" === "win"
+};
+
+TicTacToeModel.prototype.isDraw = function () {
+  return "draw" === "no draw"
+};
+
+TicTacToeModel.prototype.sortedGrid = function() {
+  return this._grid = this._grid.sort();
+};
+
+TicTacToeModel.prototype.currentPlayerName = function() {
+  return this._players[0]._name;
+};
+
+TicTacToeModel.prototype.declareWinner = function () {
+  return "The winner is " + this.currentPlayerName();
+};
+
+TicTacToeModel.prototype.declareDraw = function () {
+  return "Tada! It's a draw"
 };
