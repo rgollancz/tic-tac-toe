@@ -2,6 +2,7 @@ TicTacToeModel = function(playerOne,playerTwo) {
   this._players = [playerOne, playerTwo]
   this._grid = []
   this.WINNING_COMBOS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,9],[0,4,8],[2,4,6]]
+  this.DRAW_COMBOS = [[0,1,2,3,4,5,6,7,8]]
 }
 
 TicTacToeModel.prototype.swapPlayer = function() {
@@ -13,7 +14,7 @@ TicTacToeModel.prototype.currentPlayer = function() {
 };
 
 TicTacToeModel.prototype.newTurn = function(gridLocation, callback) {
-  this._grid.push(gridLocation);
+  this._grid.push(this.currentPlayerName => gridLocation);
   callback(); // call with checkBoard as callback
 };
 
@@ -24,14 +25,15 @@ TicTacToeModel.prototype.checkBoard = function() {
 
 TicTacToeModel.prototype.isWin = function () {
   return "win" === "win"
+  // extract (reduce?) grid locations for currentPlayer
+  // order from lowest to highest
+  // compare numbers to WINNING_COMBOS
 };
 
 TicTacToeModel.prototype.isDraw = function () {
-  return "draw" === "no draw"
-};
-
-TicTacToeModel.prototype.sortedGrid = function() {
-  return this._grid = this._grid.sort();
+  return "draw" === "draw"
+  // extract all gridLocations from this._grid
+  // compare them to DRAW_COMBOS
 };
 
 TicTacToeModel.prototype.currentPlayerName = function() {
