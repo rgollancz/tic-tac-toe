@@ -13,17 +13,12 @@ TicTacToeModel.prototype.currentPlayer = function() {
   return this._players[0];
 };
 
-TicTacToeModel.prototype.newTurn = function(gridLocation, callback) {
-  this._grid.push(this.currentPlayerName => gridLocation);
-  callback(); // call with checkBoard as callback
-};
-
-TicTacToeModel.prototype.checkBoard = function() {
-  if(this.isWin()) return this.declareWinner();
-  if(this.isDraw()) return this.declareDraw();
+TicTacToeModel.prototype.currentPlayerName = function() {
+  return this._players[0]._name;
 };
 
 TicTacToeModel.prototype.isWin = function () {
+  console.log("win")
   return "win" === "win"
   // extract (reduce?) grid locations for currentPlayer
   // order from lowest to highest
@@ -31,13 +26,10 @@ TicTacToeModel.prototype.isWin = function () {
 };
 
 TicTacToeModel.prototype.isDraw = function () {
+  console.log("draw")
   return "draw" === "draw"
   // extract all gridLocations from this._grid
   // compare them to DRAW_COMBOS
-};
-
-TicTacToeModel.prototype.currentPlayerName = function() {
-  return this._players[0]._name;
 };
 
 TicTacToeModel.prototype.declareWinner = function () {
@@ -46,4 +38,19 @@ TicTacToeModel.prototype.declareWinner = function () {
 
 TicTacToeModel.prototype.declareDraw = function () {
   return "Tada! It's a draw"
+};
+
+TicTacToeModel.prototype.checkBoard = function() {
+  if(this.isWin()) return this.declareWinner();
+  if(this.isDraw()) return this.declareDraw();
+};
+
+TicTacToeModel.prototype.addMove = function(callback) {
+  this._grid.push(this._players[0]._name, gridLocation);
+  callback();
+}
+
+TicTacToeModel.prototype.newTurn = function(gridLocation) {
+  var self = this;
+  this.addMove(self.checkBoard())
 };
