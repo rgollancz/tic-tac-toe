@@ -17,8 +17,15 @@ TicTacToeModel.prototype.currentPlayerName = function() {
   return this._players[0]._name;
 };
 
+TicTacToeModel.prototype.currentPlayerMarker = function() {
+  return this._players[0]._marker;
+};
+
+TicTacToeModel.prototype.currentPlayerMoves = function () {
+  
+};
+
 TicTacToeModel.prototype.isWin = function () {
-  console.log("win")
   return "win" === "win"
   // extract (reduce?) grid locations for currentPlayer
   // order from lowest to highest
@@ -26,7 +33,6 @@ TicTacToeModel.prototype.isWin = function () {
 };
 
 TicTacToeModel.prototype.isDraw = function () {
-  console.log("draw")
   return "draw" === "draw"
   // extract all gridLocations from this._grid
   // compare them to DRAW_COMBOS
